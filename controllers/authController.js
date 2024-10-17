@@ -8,15 +8,28 @@ const signup = async (req, res) => {
   const { telegram_account } = req.body;
 
   try {
+
+      // Check if the account is at least 3 years old
+      const currentDate = new Date();
+      const accountAgeInYears = (currentDate - user.createdAt) / (1000 * 60 * 60 * 24 * 365); 
+  
+      if (accountAgeInYears < 3) {
+        return res.status(400).json({ message: 'Your account must be at least 3 years old to log in.' });
+      }
+ 
+
+  
+
+    // Create new user
+    const newUser = new User({ telegram_account });
+    await newUser.save();
+
+         
     // Check if the user already exists
     const existingUser = await User.findOne({ telegram_account });
     if (existingUser) {
       return res.status(400).json({ message: 'User already exists.' });
     }
-
-    // Create new user
-    const newUser = new User({ telegram_account });
-    await newUser.save();
 
     // Generate a token
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
