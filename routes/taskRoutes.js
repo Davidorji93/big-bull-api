@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const taskController = require('../controllers/taskController');
+const taskController = require('../controllers/taskController.js');
 
 // Assign a task to a user
 router.post('/users/:userId/tasks', taskController.assignTask);

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bidController = require('../controllers/bidController');
+const bidController = require('../controllers/bidController.js');
 
 // Place a bid on an auction
 router.post('/auctions/:auctionId/bids', bidController.placeBid);

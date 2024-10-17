@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const transactionController = require('../controllers/transactionController');
+const transactionController = require('../controllers/transactionController.js');
 
 // Create a new transaction (withdrawal or deposit)
 router.post('/transactions', transactionController.createTransaction);

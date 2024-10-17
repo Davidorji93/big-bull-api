@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const predictionController = require('../controllers/predictionController');
+const predictionController = require('../controllers/predictionController.js');
 
 // Create a new prediction for a user
 router.post('/users/:userId/predictions', predictionController.createPrediction);
